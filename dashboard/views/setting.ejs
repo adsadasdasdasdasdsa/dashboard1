@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setting</title>
+    <link rel="stylesheet" href="static/css/setting.css">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+        * {
+           text-decoration: none;
+           color: white;
+        }
+       body {
+           margin: 0;
+           padding: 0;
+           background-color: rgb(36, 36, 36);
+           font-size: 16px;
+           font-family: 'Roboto', sans-serif;
+           box-sizing: border-box;
+           text-decoration: none;
+       
+       }
+       body.on {
+           overflow: hidden !important;
+       }
+       
+       .center {
+        box-sizing: border-box;
+        box-shadow: 0px 0px 1px black;
+        background-color: rgb(22, 22, 22);
+        height: 500px;
+        width: 500px;
+        margin-left: 420px;
+    text-align: center;
+    margin-top: 150px;
+       }
+       .lang {
+        width: 100px;
+        margin-top: 75px;
+        border: none;
+        border-radius: 5px;
+        outline: none;background-color: black;
+        height: 30px;
+       }
+       .prefix {
+        width: 100px;
+        margin-top: 75px;
+        border: none;
+        border-radius: 5px;
+        outline: none;background-color: black;
+        height: 30px;
+       }
+       .submet {
+        width: 100px;
+        margin-top: 75px;
+        border: none;
+        border-radius: 5px;
+        outline: none;background-color: black;
+        height: 30px;
+       }
+       </style>
+</head>
+<body>
+    <div class="center">
+<form method="post">
+    
+    <small>languge</small>
+    <select name="lang" class="lang">
+        <option disabled selected value="languge">languge</option>
+        <option value="ar">ar</option>
+        <option value="en">en</option>
+
+    </select><br>
+
+    <small>prefix</small> <input type="text" name="prefix" class="prefix"><br>
+    <button type="submit"class="submet" >done</button>
+</form>
+<br><br>
+<a href="/logout"><button style="background-color: black;">logout</button></a>
+
+
+
+
+    </div>
+
+</body>
+</html>

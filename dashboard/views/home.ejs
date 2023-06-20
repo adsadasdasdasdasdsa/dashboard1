@@ -1,0 +1,719 @@
+
+
+ <!DOCTYPE html>
+ <html>
+ <head>
+   <meta charset="utf-8">
+   <title><%=client.user.username%> - A Discord Bot</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/png" href="static/img/logo.svg">
+ <style>
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	color: var(--secondary);
+	font-size: 16px;
+	font-family: 'Roboto', sans-serif;
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+html, body {
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: var(--primary);
+}
+
+body.on {
+	overflow: hidden !important;
+}
+
+.btn {
+	border: none;
+	background-color: var(--third);
+	padding: 10px 30px;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.btn:hover {
+	background-color: var(--third-disabled);
+}
+
+.btn.blue {
+	background-color: var(--o1);
+}
+
+.btn.blue:hover {
+	background-color: var(--o1-disabled);
+}
+
+.container {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.main {
+	height: 100vh;
+}
+
+.scroll-down {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+	animation: scrolldown 1s infinite;
+}
+
+.scroll-down i {
+	font-size: 24px;
+}
+
+/* navbar */
+.navbar-nav  {
+	display: flex;
+	justify-content: space-between;
+	margin: 20px;
+}
+
+.navbar-toggler {
+	display: none;
+	position: absolute;
+	z-index: 5;
+	right: 0;
+	top: 0;
+	margin: 20px;
+}
+
+.navbar-toggler i {
+	font-size: 30px;
+}
+
+.navbar-brand {
+	display: flex;
+	align-items: center;
+}
+
+.navbar-brand-txt a {
+	font-size: 24px;
+	letter-spacing: 1px;
+}
+
+.navs {
+	display: flex;
+	align-items: center;
+}
+
+.navs .navs-item {
+	margin: 0px 10px;
+	padding: 10px;
+	font-weight: bold;
+}
+
+.navs .navs-item a {
+	font-size: 14px;
+	color: var(--secondary-disabled);
+}
+
+.navs .navs-item a:hover {
+	color: var(--secondary);
+}
+
+.navs .navs-item a button {
+	font-size: 14px;
+}
+
+.navs .navs-item.notbtn {
+	margin: 0px 10px;
+	transition: 0.3s;
+	padding: 10px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.navs .navs-item.notbtn:hover {
+	/*transform: scale(1.1);*/
+	font-weight: bold;
+	background-color: rgb(0,0,0,0.3);
+}
+.navs .navs-item.notbtn:focus {
+	/*transform: scale(1.1);*/
+	font-weight: bold;
+	background-color: rgb(0,0,0,0.1);
+	border-radius: 4px;	
+}
+
+.navs-item .btn {
+	font-weight: bold;
+}
+/* navbar end */
+
+/* jumbotron */
+.jumbotron {
+	margin-top: 100px;
+}
+
+.jumbotron-items {
+	display: flex;
+	justify-content: space-between;
+}
+
+.jumbotron-items .jumbotron-item {
+	max-width: 450px;
+}
+
+.jumbotron-items .jumbotron-item img {
+	width: 300px;
+	height: auto;
+}
+
+.jumbotron-item .jumbotron-t {
+	font-size: 30px;
+	font-weight: bold;
+	text-align: right;
+	width: 100%;
+}
+
+.jumbotron-item .jumbotron-d {
+	margin-top: 15px;
+	font-size: 20px;
+	color: var(--secondary-disabled);
+}
+
+.jumbotron-item .jumbotron-buttons {
+	margin-top: 30px;
+}
+
+.jumbotron-item .jumbotron-buttons button {
+	margin: 10px 5px;
+}
+/* jumbotron end */
+
+/* features */
+.features-box .features-t {
+	font-size: 30px;
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+.features-box .features-t::after {
+	content: "";
+	display: block;
+	border-bottom: 3px solid var(--third);
+	width: 10%;
+	margin: 0 auto;
+	border-radius: 50px;
+	margin-top: 7px;
+	min-width: 70px;
+}
+
+.features {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+
+.features .feature {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	margin: 30px 0;
+}
+
+.features .feature:nth-child(2) {
+	flex-direction: row-reverse;
+}
+
+.feature .feature-img {
+	width: 100%;
+	max-width: 400px;
+	margin: 0 auto;
+}
+
+.feature .feature-info {
+	max-width: 400px;
+	border-radius: 5px;
+	padding: 10px;
+	margin: 10px auto;
+}
+
+.feature .feature-info .feature-info-d {
+	color: var(--secondary-disabled)
+}
+
+.feature .feature-info .feature-info-t {
+	font-size: 30px;
+	font-weight: bold;
+}
+/* features end */
+
+/* services */
+.services-box {
+	margin: 100px;
+}
+
+.services-box h1 {
+	font-size: 30px;
+	text-align: center;
+}
+
+.services-box h1::after {
+	content: "";
+	display: block;
+	border-bottom: 3px solid var(--third);
+	width: 10%;
+	margin: 0 auto;
+	border-radius: 50px;
+	margin-top: 7px;
+	min-width: 70px;	
+}
+
+.services {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.service {
+	width: 200px;
+	height: 50px;
+	background-color: var(--third);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
+	margin: 20px;
+}
+
+.service span {
+	font-weight: bold;
+}
+/* services end */
+
+/* footer */
+.footer {
+	margin-top: 100px;
+	background-color: var(--third);
+}
+
+.footer .container span {
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	width: 100%;
+	display: block;
+	padding: 15px;
+}
+
+.footer-items {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.footer-item ul {
+	list-style: none;
+	padding: 15px;
+	margin: 0;
+}
+
+.footer-ul li {
+	margin: 5px 0;
+}
+
+.footer-ul li a {
+	color: var(--secondary-disabled);
+}
+
+.footer-ul li a:hover {
+	color: var(--secondary);
+}
+/* footer end */
+
+/* media query - responsive website */
+
+/* mobile */
+@media (max-width: 992px) {
+
+	/* navbar mobile version */
+	.navbar-toggler {
+		display: block;
+	}
+
+	.navs {
+		flex-direction: column;
+		background-color: var(--primary-disabled);
+		transform: translateX(110%);
+		position: fixed;
+		z-index: 2;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		transition: 1s;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.navs.on {
+		transform: translateX(0%);
+		overflow: hidden;
+	}
+
+	.navs .navs-item {
+		width: 100%;
+		text-align: center;
+		margin: 10px 0px;
+	}
+
+	.navs-item a button {
+		width: 100%;
+	}
+
+	.jumbotron-items {
+		justify-content: center;
+	}
+
+	.jumbotron-items .jumbotron-item {
+		text-align: center;
+	}
+
+	.jumbotron-items .jumbotron-item img {
+		display: none;
+	}
+	/* navbar mobile version end */
+
+	/* features mobile version */
+	.features-box .features-t {
+		font-size: 20px;
+		text-align: center;
+	}
+
+	.feature-info .feature-info-t, .feature-info .feature-info-d {
+		text-align: center;
+	}
+
+	.features .feature {
+		flex-direction: column;
+	}
+
+	.features .feature:nth-child(2) {
+		flex-direction: column;
+	}
+	/* features mobile version end */
+
+	/* services mobile version */
+	.services-box h1 {
+		font-size: 20px;
+	}
+	/* services mobile version end */
+
+}
+
+/* key frames */
+@keyframes scrolldown {
+	20% {
+		transform: translateY(0px);
+	}
+	40% {
+		transform: translateY(10px);
+	}
+	60% {
+		transform: translateY(0px);
+	}
+	80% {
+		transform: translateY(10px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+/* uppercase */
+.txt-uppercase {
+	text-transform: uppercase !important;
+}
+
+.txt-bold {
+	font-weight: bold !important;
+}
+
+.txt-bold .type-1 {
+	font-weight: 900;
+}
+.shadow-sm {
+	box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.54);
+-webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.54);
+-moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.54);
+}
+
+.shadow-sm-2 {
+	box-shadow: 4px 4px 20px 0px rgba(0,0,0,0.54);
+-webkit-box-shadow: 4px 4px 20px 0px rgba(0,0,0,0.54);
+-moz-box-shadow: 4px 4px 20px 0px rgba(0,0,0,0.54);
+}
+
+.shadow-md {
+	box-shadow: 0px 0px 40px 5px rgba(0,0,0,0.52);
+-webkit-box-shadow: 0px 0px 40px 5px rgba(0,0,0,0.52);
+-moz-box-shadow: 0px 0px 40px 5px rgba(0,0,0,0.52);
+}
+
+.shadow-md-2 {
+	box-shadow: 4px 4px 40px 5px rgba(0,0,0,0.52);
+-webkit-box-shadow: 4px 4px 40px 5px rgba(0,0,0,0.52);
+-moz-box-shadow: 4px 4px 40px 5px rgba(0,0,0,0.52);
+}
+.loading {
+	display: flex;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: var(--primary-disabled);
+	z-index: 15;
+	align-items: center;
+	transition: 0.5s;
+}
+
+.loading.off {
+	transform: translateX(101%);
+}
+
+.loading-item {
+	border: 4px solid var(--secondary);
+	height: 35px;
+	border-radius: 4px;
+	width: 100%;
+	max-width: 400px;
+	margin: 0 auto;
+	display: flex;
+	transition: 1s;
+}
+
+.loading-progress {
+	background-color: var(--secondary);
+	width: 100%;
+	max-width: 400px;
+	display: block;
+	animation: loadingprogress 1.5s;
+}
+
+
+@keyframes loadingprogress {
+	0% {
+		width: 0%;
+	}
+	5% {
+		width: 2%;
+	}
+	7% {
+		width: 10%;
+	}
+	10% {
+		width: 20%;
+	}
+	25% {
+		width: 25%;
+	}
+	50% {
+		width: 50%;
+	}
+	60% {
+		width: 70%;
+	}
+	80% {
+		width: 75%;
+	}
+	100% {
+		width: 100%;
+	}
+}
+:root {
+	/* 
+	* this is primary color, applied on:
+	* background, underline
+	 */
+	--primary: #262626;
+	--primary-disabled: #292222;
+	/*
+	* this is secondary color, applied on:
+	* text, border
+	*/
+	--secondary: white;
+	--secondary-disabled: #ababab;
+	/*
+	* this is third color, applied on:
+	* button, 
+	*/
+	--third: #b31414;
+	--third-disabled: #8c1111;
+	/*
+	* other colors, used on random object.
+	*/
+	--o1: #00b2c9;
+	--o1-disabled: #008191;
+}
+ </style>
+   <!-- css -->
+
+   <!-- css end -->
+ 
+   <!-- font awesome -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ </head>
+ <body class="on">
+   <div class="loading" id="loading-box">
+     <div class="loading-item"><div class="loading-progress"></div></div>
+   </div>
+ 
+   <main class="main">
+     <!-- navbar -->
+     <div class="navbar">
+       <div class="container">
+         <div class="navbar-nav">
+           <div class="navbar-brand">
+             <!-- You can change it with Image if you want. -->
+             <span class="navbar-brand-txt"><a class="txt-bold type-1" href="/"><%=client.user.username%></a></span>
+           </div>
+ 
+           <span class="navbar-toggler" id="toggler"><i onclick="toggleNavbar(this)" class="fas fa-bars"></i></span>
+ 
+           <div class="navs" id="navs">
+             <!-- You can change the href value and the text value -->
+             <div class="navs-item notbtn"><a href="#" class="txt-uppercase">Commands</a></div>
+             <div class="navs-item notbtn"><a href="#" class="txt-uppercase">Docs</a></div>
+             <div class="navs-item notbtn"><a href="#" class="txt-uppercase">Support</a></div>
+             <div class="navs-item notbtn"><a href="#" class="txt-uppercase">Invite</a></div>
+             <div class="navs-item"><a href="/callback"><button class="btn txt-uppercase shadow-sm">Login</button></a></div>
+           </div>
+         </div>
+       </div>
+     </div>
+     <!-- navbar end -->		
+ 
+     <!-- jumbotron -->
+     <div class="jumbotron">
+       <div class="container">
+         <div class="jumbotron-items">
+           <div class="jumbotron-item">
+             <span class="jumbotron-t">Why <%=client.user.username%>?</span>
+             <p class="jumbotron-d">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+             <div class="jumbotron-buttons">
+               <button class="btn" onclick="location.href='#features'">Features</button>
+               <button class="btn blue" onclick="location.href='#'">Invite</button>
+             </div>
+           </div>
+           <div class="jumbotron-item">
+             <img src="static/img/img1.svg" alt="image">
+           </div>
+         </div>
+       </div>
+     </div>
+     <!-- jumbotron end -->
+     <span class="scroll-down"><i class="fas fa-arrow-down"></i></span>
+   </main>
+ 
+   <!-- features -->
+   <div class="features-box">
+     <h1 class="features-t" id="features">We are provide the best.</h1>
+     <div class="container">
+       <div class="features">
+         <div class="feature">
+           <img class="feature-img" src="static/img/feature1.svg"></img>
+           <div class="feature-info">
+             <h2 class="feature-info-t">Feature 1</h2>
+             <p class="feature-info-d">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+           </div>
+         </div>
+         <div class="feature">
+           <img class="feature-img" src="static/img/feature2.svg"></img>
+           <div class="feature-info">
+             <h2 class="feature-info-t">Feature 2</h2>
+             <p class="feature-info-d">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+           </div>
+         </div>
+         <div class="feature">
+           <img class="feature-img" src="static/img/feature3.svg"></img>
+           <div class="feature-info">
+             <h2 class="feature-info-t">Feature 3</h2>
+             <p class="feature-info-d">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <!-- features end -->
+ 
+   <!-- services -->
+   <div class="services-box">
+     <h1 class="services-t" id="services">We currently services...</h1>
+     <div class="container">
+       <div class="services">
+         <div class="service">
+           <span><i class="fas fa-server"></i> <%=client.guilds.cache.size%></span>
+         </div>
+         <div class="service">
+           <span><i class="fas fa-users"></i> <%=client.users.cache.size%></span>
+         </div>
+         <div class="service">
+           <span><i class="fas fa-hashtag"></i> <%=client.channels.cache.size%></span>
+         </div>
+       </div>
+     </div>
+   </div>
+   <!-- services end -->
+ 
+
+ <script>
+  console.log("make by Vins 2106 - source code available on github (Vins2106)");
+
+setInterval(() => {
+	console.log("make by Vins 2106 - source code available on github (Vins2106)");
+}, 10000)
+
+let nt = document.getElementById("toggler");
+let nb = document.getElementById("navs");
+let ld = document.getElementById("loading-box")
+let body = document.querySelector("body");
+let isnt = false;
+
+function toggleNavbar(e) {
+
+	if (isnt) {
+		e.classList.remove("fa-times");
+		e.classList.add("fa-bars");
+		nb.classList.remove("on")
+		body.classList.remove("on")
+		isnt = false;
+	} else if (!isnt) {
+		e.classList.add("fa-times");
+		e.classList.remove("fa-bars");
+		nb.classList.add("on")
+		body.classList.add("on")
+		isnt = true;
+	}
+
+}
+
+window.onload = () => {
+	setTimeout(() => {
+		ld.classList.add("off");
+		body.classList.remove("on")
+	}, 1510);
+}
+scroll({top:null, left:null})
+ </script>
+   <script type="text/javascript" src="./js/script.js"></script>
+ </body>
+ </html>
